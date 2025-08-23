@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shafran Selective - Презентация v2.0</title>
+    <title>Shafran Selective - Бизнес-план</title>
     
-    <!-- Подключение элегантных шрифтов -->
+    <!-- Подключение премиальных шрифтов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@200;300;400;500;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
@@ -139,7 +139,7 @@
         }
 
         .logo::after {
-            content: 'SELECTIVE';
+            content: 'BUSINESS PLAN';
             position: absolute;
             left: 0;
             top: 100%;
@@ -218,11 +218,11 @@
         .slide {
             position: absolute;
             width: 90%;
-            max-width: 1200px;
+            max-width: 1300px;
             opacity: 0;
             transform: translateX(100px) scale(0.95);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 100px 80px;
+            padding: 80px 60px;
         }
 
         .slide.active {
@@ -250,7 +250,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 64px;
             font-weight: 900;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             letter-spacing: -2px;
             line-height: 1.1;
             background: linear-gradient(135deg, #ffffff 0%, #d4af37 50%, #ffffff 100%);
@@ -259,14 +259,6 @@
             background-clip: text;
             position: relative;
             animation: titleGlow 3s ease-in-out infinite;
-        }
-
-        .subtitle {
-            font-size: 20px;
-            color: rgba(255,255,255,0.7);
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 40px;
         }
 
         @keyframes titleGlow {
@@ -280,9 +272,9 @@
 
         h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 700;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             color: rgba(255,255,255,0.95);
             position: relative;
             display: inline-block;
@@ -307,16 +299,16 @@
         /* Метрики с анимацией чисел */
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 35px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .metric-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.08) 100%);
             border: 1px solid rgba(212,175,55,0.2);
             border-radius: 20px;
-            padding: 35px;
+            padding: 30px;
             backdrop-filter: blur(20px);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -350,9 +342,9 @@
 
         .metric-value {
             font-family: 'Playfair Display', serif;
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 900;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             background: linear-gradient(135deg, #ffffff 0%, #d4af37 50%, #f4e4bc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -380,7 +372,7 @@
         }
 
         .metric-label {
-            font-size: 13px;
+            font-size: 12px;
             color: rgba(255,255,255,0.7);
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -389,36 +381,41 @@
 
         /* Таблицы с эффектами */
         .table-container {
-            margin-top: 50px;
+            margin-top: 40px;
             overflow-x: auto;
             border-radius: 15px;
             background: rgba(255,255,255,0.02);
             padding: 5px;
+            max-height: 400px;
+            overflow-y: auto;
         }
 
         table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0 5px;
+            font-size: 14px;
         }
 
         th {
             background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(255,255,255,0.05) 100%);
-            padding: 18px;
+            padding: 15px;
             text-align: left;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #d4af37;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         td {
-            padding: 18px;
+            padding: 15px;
             background: rgba(255,255,255,0.02);
             border-left: 2px solid transparent;
             transition: all 0.3s ease;
-            font-size: 14px;
         }
 
         tr:hover td {
@@ -450,17 +447,78 @@
             }
         }
 
+        /* График прогресса */
+        .progress-timeline {
+            margin: 40px 0;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #f4e4bc);
+            border-radius: 2px;
+            width: 0;
+            animation: progressFill 2s ease-out forwards;
+            animation-delay: 0.5s;
+            box-shadow: 0 0 20px rgba(212,175,55,0.5);
+        }
+
+        @keyframes progressFill {
+            to { width: 100%; }
+        }
+
+        .timeline-points {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .timeline-point {
+            text-align: center;
+            flex: 1;
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .timeline-point:nth-child(1) { animation-delay: 0.7s; }
+        .timeline-point:nth-child(2) { animation-delay: 0.9s; }
+        .timeline-point:nth-child(3) { animation-delay: 1.1s; }
+        .timeline-point:nth-child(4) { animation-delay: 1.3s; }
+
+        .timeline-point::before {
+            content: '';
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: #d4af37;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(212,175,55,0.5);
+        }
+
         /* Список проектов с карточками */
         .projects-list {
-            margin-top: 40px;
+            margin-top: 35px;
             display: grid;
-            gap: 20px;
+            gap: 18px;
         }
 
         .project-item {
             background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.05) 100%);
             border-left: 3px solid rgba(212,175,55,0.5);
-            padding: 25px;
+            padding: 20px;
             border-radius: 10px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -491,8 +549,8 @@
 
         .project-item h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            margin-bottom: 15px;
+            font-size: 22px;
+            margin-bottom: 12px;
             color: #d4af37;
         }
 
@@ -643,7 +701,7 @@
         .divider {
             height: 2px;
             background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.3) 25%, rgba(212,175,55,0.6) 50%, rgba(212,175,55,0.3) 75%, transparent 100%);
-            margin: 50px 0;
+            margin: 35px 0;
             position: relative;
             overflow: hidden;
         }
@@ -664,61 +722,26 @@
             100% { left: 100%; }
         }
 
-        /* Timeline */
-        .timeline {
-            position: relative;
-            margin-top: 40px;
+        /* ROI индикатор */
+        .roi-indicator {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(255,255,255,0.1) 100%);
+            border: 1px solid rgba(212,175,55,0.4);
+            border-radius: 30px;
+            margin: 10px 5px;
+            animation: roiPulse 2s ease-in-out infinite;
         }
 
-        .timeline-item {
-            display: flex;
-            margin-bottom: 30px;
-            opacity: 0;
-            animation: fadeInLeft 0.8s ease-out forwards;
-        }
-
-        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
-        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
-        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
-        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
+        @keyframes roiPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(212,175,55,0.2);
             }
-            to {
-                opacity: 1;
-                transform: translateX(0);
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 0 40px rgba(212,175,55,0.4);
             }
-        }
-
-        .timeline-marker {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #000;
-            margin-right: 30px;
-            flex-shrink: 0;
-            box-shadow: 0 0 20px rgba(212,175,55,0.5);
-        }
-
-        .timeline-content {
-            flex: 1;
-            background: rgba(255,255,255,0.03);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 2px solid rgba(212,175,55,0.3);
-        }
-
-        .timeline-content h4 {
-            color: #d4af37;
-            margin-bottom: 10px;
         }
 
         /* Мобильная адаптация */
@@ -726,7 +749,7 @@
             h1 { font-size: 36px; }
             h2 { font-size: 28px; }
             .metric-value { font-size: 32px; }
-            .slide { padding: 70px 30px; }
+            .slide { padding: 60px 25px; }
             .header { padding: 20px 25px; }
             .logo { font-size: 20px; }
             .navigation { bottom: 30px; }
@@ -793,282 +816,298 @@
 
         <!-- Слайды -->
         <div class="slides-container">
-            <!-- Слайд 1: Титульный -->
+            <!-- Слайд 1: Титульный с ключевыми показателями -->
             <div class="slide active" id="slide1">
                 <div class="animate-in">
-                    <h1 data-ru="План расширения сети и развитие оптового направления" 
-                        data-uz="Tarmoqni kengaytirish va ulgurji savdoni rivojlantirish rejasi">
-                        План расширения сети и развитие оптового направления
+                    <h1 data-ru="План расширения" 
+                        data-uz="Kengaytirish rejasi">
+                        План расширения
                     </h1>
-                    <div class="subtitle" data-ru="Версия 2.0 | Август 2025" data-uz="Versiya 2.0 | Avgust 2025">
-                        Версия 2.0 | Август 2025
-                    </div>
                     <div class="divider"></div>
                     <div class="metrics-grid">
                         <div class="metric-card">
-                            <div class="metric-value" data-value="1.61">$0M</div>
-                            <div class="metric-label" data-ru="Общие инвестиции" data-uz="Jami investitsiyalar">Общие инвестиции</div>
+                            <div class="metric-value" data-value="5.66">$0M</div>
+                            <div class="metric-label" data-ru="Общие инвестиции" data-uz="Umumiy investitsiyalar">Общие инвестиции</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-value" data-value="156">$0K</div>
-                            <div class="metric-label" data-ru="Средняя прибыль/мес" data-uz="O'rtacha oylik foyda">Средняя прибыль/мес</div>
+                            <div class="metric-value" data-value="1.66">$0M</div>
+                            <div class="metric-label" data-ru="Месячная прибыль" data-uz="Oylik foyda">Месячная прибыль</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-value" data-value="10.3">0</div>
-                            <div class="metric-label" data-ru="Месяцев до окупаемости" data-uz="Qoplash muddati (oy)">Месяцев до окупаемости</div>
+                            <div class="metric-value" data-value="352">0%</div>
+                            <div class="metric-label" data-ru="ROI (базовый)" data-uz="ROI (bazaviy)">ROI (базовый)</div>
+                        </div>
+                    </div>
+                    <div class="progress-timeline">
+                        <div class="timeline-bar">
+                            <div class="timeline-progress"></div>
+                        </div>
+                        <div class="timeline-points">
+                            <div class="timeline-point">
+                                <div class="highlight" data-ru="3 мес" data-uz="3 oy">3 мес</div>
+                                <div style="font-size: 11px; opacity: 0.7;" data-ru="Запуск" data-uz="Ishga tushirish">Запуск</div>
+                            </div>
+                            <div class="timeline-point">
+                                <div class="highlight" data-ru="6 мес" data-uz="6 oy">6 мес</div>
+                                <div style="font-size: 11px; opacity: 0.7;" data-ru="Расширение" data-uz="Kengayish">Расширение</div>
+                            </div>
+                            <div class="timeline-point">
+                                <div class="highlight" data-ru="10 мес" data-uz="10 oy">10 мес</div>
+                                <div style="font-size: 11px; opacity: 0.7;" data-ru="Безубыточность" data-uz="Zarar-ziyonsizlik">Безубыточность</div>
+                            </div>
+                            <div class="timeline-point">
+                                <div class="highlight" data-ru="12 мес" data-uz="12 oy">12 мес</div>
+                                <div style="font-size: 11px; opacity: 0.7;" data-ru="Окупаемость" data-uz="To'liq qoplanish">Окупаемость</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Слайд 2: Карта проектов -->
+            <!-- Слайд 2: Структура инвестиций по этапам -->
             <div class="slide" id="slide2">
-                <h2 data-ru="Карта проектов - 6 направлений" data-uz="Loyihalar xaritasi - 6 yo'nalish">Карта проектов - 6 направлений</h2>
-                <div class="projects-list">
-                    <div class="project-item">
-                        <h3 data-ru="Розничные точки (4)" data-uz="Chakana savdo nuqtalari (4)">Розничные точки (4)</h3>
-                        <p data-ru="• Ц5 - обновление с DR. Vranjes - $500К<br>• Ул. Тараса Шевченко - новый магазин - $275К<br>• Бутик Гламур - премиум локация - $325К<br>• Цветочный магазин у Ц5 - $160К"
-                           data-uz="• Ts5 - DR. Vranjes bilan yangilash - $500K<br>• Taras Shevchenko ko'ch. - yangi do'kon - $275K<br>• Butik Glamur - premium joylashuv - $325K<br>• Ts5 yonida gul do'koni - $160K">
-                            • Ц5 - обновление с DR. Vranjes - $500К<br>
-                            • Ул. Тараса Шевченко - новый магазин - $275К<br>
-                            • Бутик Гламур - премиум локация - $325К<br>
-                            • Цветочный магазин у Ц5 - $160К
-                        </p>
-                    </div>
-                    <div class="project-item">
-                        <h3 data-ru="Оптовые каналы (2)" data-uz="Ulgurji kanallar (2)">Оптовые каналы (2)</h3>
-                        <p data-ru="• Duty Free - $150К (маржа 20-25%)<br>• Рынок O'rikzor - $200К (маржа 10-12%)<br>• Быстрая окупаемость: 5-13 месяцев<br>• Цикл оборачиваемости: 40 дней"
-                           data-uz="• Duty Free - $150K (marja 20-25%)<br>• O'rikzor bozori - $200K (marja 10-12%)<br>• Tez qoplanish: 5-13 oy<br>• Aylanish sikli: 40 kun">
-                            • Duty Free - $150К (маржа 20-25%)<br>
-                            • Рынок O'rikzor - $200К (маржа 10-12%)<br>
-                            • Быстрая окупаемость: 5-13 месяцев<br>
-                            • Цикл оборачиваемости: 40 дней
-                        </p>
-                    </div>
-                    <div class="project-item">
-                        <h3 data-ru="Ключевые преимущества" data-uz="Asosiy afzalliklar">Ключевые преимущества</h3>
-                        <p data-ru="• Диверсифицированная структура бизнеса<br>• Синергия между розницей и оптом<br>• Эксклюзивные бренды в ассортименте<br>• Оптимизированная логистика (15-16 тонн)"
-                           data-uz="• Diversifikatsiyalangan biznes tuzilmasi<br>• Chakana va ulgurji o'rtasida sinergiya<br>• Assortimentda eksklyuziv brendlar<br>• Optimallashtirilgan logistika (15-16 tonna)">
-                            • Диверсифицированная структура бизнеса<br>
-                            • Синергия между розницей и оптом<br>
-                            • Эксклюзивные бренды в ассортименте<br>
-                            • Оптимизированная логистика (15-16 тонн)
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Слайд 3: Финансовые показатели -->
-            <div class="slide" id="slide3">
-                <h2 data-ru="Инвестиции и прогноз прибыли" data-uz="Investitsiyalar va foyda prognozi">Инвестиции и прогноз прибыли</h2>
+                <h2 data-ru="Структура инвестиций" data-uz="Investitsiya tuzilmasi">Структура инвестиций</h2>
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th data-ru="Проект" data-uz="Loyiha">Проект</th>
+                                <th data-ru="Направление" data-uz="Yo'nalish">Направление</th>
                                 <th data-ru="Инвестиции" data-uz="Investitsiyalar">Инвестиции</th>
-                                <th data-ru="Оборот/мес" data-uz="Oylik aylanma">Оборот/мес</th>
-                                <th data-ru="Прибыль/мес" data-uz="Oylik foyda">Прибыль/мес</th>
-                                <th data-ru="Окупаемость" data-uz="Qoplash muddati">Окупаемость</th>
+                                <th data-ru="Ожидаемая прибыль/мес" data-uz="Kutilayotgan oylik foyda">Ожидаемая прибыль/мес</th>
+                                <th data-ru="Окупаемость" data-uz="Qoplanish">Окупаемость</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-ru="Ц5 (розница)" data-uz="Ts5 (chakana)">Ц5 (розница)</td>
+                                <td data-ru="C5 (модернизация)" data-uz="C5 (modernizatsiya)">C5 (модернизация)</td>
                                 <td>$500,000</td>
-                                <td>$150,000</td>
                                 <td class="highlight">$30-45K</td>
-                                <td>11-17 мес</td>
+                                <td>11-17 <span data-ru="мес" data-uz="oy">мес</span></td>
                             </tr>
                             <tr>
-                                <td data-ru="Тараса Шевченко" data-uz="Taras Shevchenko">Тараса Шевченко</td>
-                                <td>$275,000</td>
-                                <td>$60,000</td>
-                                <td class="highlight">$9-12K</td>
-                                <td>23-31 мес</td>
-                            </tr>
-                            <tr>
-                                <td data-ru="Бутик Гламур" data-uz="Butik Glamur">Бутик Гламур</td>
+                                <td data-ru="Бутик Glamour" data-uz="Glamour butik">Бутик Glamour</td>
                                 <td>$325,000</td>
-                                <td>$175,000</td>
-                                <td class="highlight">$43.8K</td>
-                                <td>7.4 мес</td>
+                                <td class="highlight">$43,750</td>
+                                <td>7.4 <span data-ru="мес" data-uz="oy">мес</span></td>
                             </tr>
                             <tr>
-                                <td data-ru="Цветочный" data-uz="Gul do'koni">Цветочный</td>
+                                <td data-ru="Цветочный магазин" data-uz="Gul do'koni">Цветочный магазин</td>
                                 <td>$160,000</td>
-                                <td>$50,000</td>
-                                <td class="highlight">$23K</td>
-                                <td>7 мес</td>
+                                <td class="highlight">$23,000</td>
+                                <td>7.0 <span data-ru="мес" data-uz="oy">мес</span></td>
                             </tr>
                             <tr>
                                 <td data-ru="Duty Free (опт)" data-uz="Duty Free (ulgurji)">Duty Free (опт)</td>
                                 <td>$150,000</td>
-                                <td>$150,000*</td>
-                                <td class="highlight">$22.5-28K</td>
-                                <td>5-7 мес</td>
+                                <td class="highlight">$22-28K</td>
+                                <td>5.3-6.7 <span data-ru="мес" data-uz="oy">мес</span></td>
                             </tr>
                             <tr>
-                                <td data-ru="O'rikzor (опт)" data-uz="O'rikzor (ulgurji)">O'rikzor (опт)</td>
-                                <td>$200,000</td>
-                                <td>$200,000*</td>
-                                <td class="highlight">$15-18K</td>
-                                <td>11-13 мес</td>
+                                <td data-ru="Проект Молекула" data-uz="Molekula loyihasi">Проект Молекула</td>
+                                <td>$2,000,000</td>
+                                <td class="highlight">$500,000</td>
+                                <td>4.0 <span data-ru="мес" data-uz="oy">мес</span></td>
+                            </tr>
+                            <tr>
+                                <td data-ru="City Mall (Harvey Nichols)" data-uz="City Mall (Harvey Nichols)">City Mall (Harvey Nichols)</td>
+                                <td>$2,050,000</td>
+                                <td class="highlight">$1,000,000</td>
+                                <td>2.05 <span data-ru="мес" data-uz="oy">мес</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="metrics-grid" style="margin-top: 30px;">
+                    <div class="metric-card">
+                        <div class="metric-value">3</div>
+                        <div class="metric-label" data-ru="Этапа реализации" data-uz="Amalga oshirish bosqichlari">Этапа реализации</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">8</div>
+                        <div class="metric-label" data-ru="Точек продаж" data-uz="Savdo nuqtalari">Точек продаж</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 3: Финансовые проекции и сценарии -->
+            <div class="slide" id="slide3">
+                <h2 data-ru="Финансовые сценарии" data-uz="Moliyaviy stsenariylar">Финансовые сценарии</h2>
+                <div class="projects-list">
+                    <div class="project-item">
+                        <h3 data-ru="Пессимистичный (20%)" data-uz="Pessimistik (20%)">Пессимистичный (20%)</h3>
+                        <p data-ru="• Годовая прибыль: $16.56M<br>• ROI: 293%<br>• Окупаемость: 15 месяцев"
+                           data-uz="• Yillik foyda: $16.56M<br>• ROI: 293%<br>• Qoplanish: 15 oy">
+                            • Годовая прибыль: $16.56M<br>
+                            • ROI: 293%<br>
+                            • Окупаемость: 15 месяцев
+                        </p>
+                    </div>
+                    <div class="project-item">
+                        <h3 data-ru="Базовый (60%)" data-uz="Bazaviy (60%)">Базовый (60%)</h3>
+                        <p data-ru="• Годовая прибыль: $19.92M<br>• ROI: 352%<br>• Окупаемость: 10 месяцев"
+                           data-uz="• Yillik foyda: $19.92M<br>• ROI: 352%<br>• Qoplanish: 10 oy">
+                            • Годовая прибыль: $19.92M<br>
+                            • ROI: <span class="highlight">352%</span><br>
+                            • Окупаемость: 10 месяцев
+                        </p>
+                    </div>
+                    <div class="project-item">
+                        <h3 data-ru="Оптимистичный (20%)" data-uz="Optimistik (20%)">Оптимистичный (20%)</h3>
+                        <p data-ru="• Годовая прибыль: $23.40M<br>• ROI: 414%<br>• Окупаемость: 7.5 месяцев"
+                           data-uz="• Yillik foyda: $23.40M<br>• ROI: 414%<br>• Qoplanish: 7.5 oy">
+                            • Годовая прибыль: $23.40M<br>
+                            • ROI: 414%<br>
+                            • Окупаемость: 7.5 месяцев
+                        </p>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div style="text-align: center;">
+                    <div class="roi-indicator">
+                        <span data-ru="Точка безубыточности:" data-uz="Zarar-ziyonsizlik nuqtasi:">Точка безубыточности:</span>
+                        <span class="highlight" style="font-size: 24px; margin-left: 10px;">10</span>
+                        <span data-ru="месяц" data-uz="oy">месяц</span>
+                    </div>
+                    <div class="roi-indicator">
+                        <span data-ru="Полная окупаемость:" data-uz="To'liq qoplanish:">Полная окупаемость:</span>
+                        <span class="highlight" style="font-size: 24px; margin-left: 10px;">12</span>
+                        <span data-ru="месяц" data-uz="oy">месяц</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 4: План реализации -->
+            <div class="slide" id="slide4">
+                <h2 data-ru="План поэтапной реализации" data-uz="Bosqichma-bosqich amalga oshirish rejasi">План поэтапной реализации</h2>
+                <div class="progress-timeline">
+                    <div class="timeline-bar">
+                        <div class="timeline-progress"></div>
+                    </div>
+                </div>
+                <div class="projects-list" style="margin-top: 30px;">
+                    <div class="project-item">
+                        <h3 data-ru="Месяцы 1-3: Подготовка" data-uz="1-3 oylar: Tayyorgarlik">Месяцы 1-3: Подготовка</h3>
+                        <p data-ru="• Договор с Abu Saxiy cargo<br>• Ремонт C5 и Glamour<br>• Формирование команды<br>• Инвестиции: $825K"
+                           data-uz="• Abu Saxiy cargo shartnomasi<br>• C5 va Glamour ta'mirlash<br>• Jamoa shakllantirish<br>• Investitsiyalar: $825K">
+                            • Договор с Abu Saxiy cargo<br>
+                            • Ремонт C5 и Glamour<br>
+                            • Формирование команды<br>
+                            • Инвестиции: <span class="highlight">$825K</span>
+                        </p>
+                    </div>
+                    <div class="project-item">
+                        <h3 data-ru="Месяцы 4-6: Первая волна" data-uz="4-6 oylar: Birinchi to'lqin">Месяцы 4-6: Первая волна</h3>
+                        <p data-ru="• Открытие C5 и Glamour<br>• Запуск Duty Free<br>• Старт маркетинга<br>• Инвестиции: $785K"
+                           data-uz="• C5 va Glamour ochilishi<br>• Duty Free ishga tushirish<br>• Marketing boshlash<br>• Investitsiyalar: $785K">
+                            • Открытие C5 и Glamour<br>
+                            • Запуск Duty Free<br>
+                            • Старт маркетинга<br>
+                            • Инвестиции: <span class="highlight">$785K</span>
+                        </p>
+                    </div>
+                    <div class="project-item">
+                        <h3 data-ru="Месяцы 7-12: Масштабирование" data-uz="7-12 oylar: Masshtablash">Месяцы 7-12: Масштабирование</h3>
+                        <p data-ru="• Проект Молекула<br>• Подготовка City Mall<br>• Оптимизация процессов<br>• Инвестиции: $2M"
+                           data-uz="• Molekula loyihasi<br>• City Mall tayyorlash<br>• Jarayonlarni optimallashtirish<br>• Investitsiyalar: $2M">
+                            • Проект Молекула<br>
+                            • Подготовка City Mall<br>
+                            • Оптимизация процессов<br>
+                            • Инвестиции: <span class="highlight">$2M</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 5: Риски и критические факторы успеха -->
+            <div class="slide" id="slide5">
+                <h2 data-ru="Управление рисками" data-uz="Xatarlarni boshqarish">Управление рисками</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-ru="Категория риска" data-uz="Xatar kategoriyasi">Категория риска</th>
+                                <th data-ru="Вероятность" data-uz="Ehtimollik">Вероятность</th>
+                                <th data-ru="Резерв" data-uz="Zaxira">Резерв</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-ru="Валютные колебания" data-uz="Valyuta tebranishlari">Валютные колебания</td>
+                                <td>70%</td>
+                                <td class="highlight">$200,000</td>
+                            </tr>
+                            <tr>
+                                <td data-ru="Срыв поставок" data-uz="Yetkazib berish buzilishi">Срыв поставок</td>
+                                <td>40%</td>
+                                <td class="highlight">$150,000</td>
+                            </tr>
+                            <tr>
+                                <td data-ru="Низкая конверсия" data-uz="Past konversiya">Низкая конверсия</td>
+                                <td>35%</td>
+                                <td class="highlight">$75,000</td>
+                            </tr>
+                            <tr>
+                                <td data-ru="Конкурентное давление" data-uz="Raqobat bosimi">Конкурентное давление</td>
+                                <td>45%</td>
+                                <td><span data-ru="В маркетинге" data-uz="Marketingda">В маркетинге</span></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="divider"></div>
+                <h3 style="text-align: center; margin-bottom: 25px;" data-ru="Критические факторы успеха" data-uz="Muvaffaqiyatning muhim omillari">Критические факторы успеха</h3>
                 <div class="metrics-grid">
                     <div class="metric-card">
-                        <div class="metric-value" data-value="785">$0K</div>
-                        <div class="metric-label" data-ru="Общий оборот/мес" data-uz="Umumiy oylik aylanma">Общий оборот/мес</div>
+                        <div class="metric-value" style="font-size: 28px;">100%</div>
+                        <div class="metric-label" data-ru="Финансирование" data-uz="Moliyalashtirish">Финансирование</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value" data-value="143">$0K</div>
-                        <div class="metric-label" data-ru="Минимальная прибыль" data-uz="Minimal foyda">Минимальная прибыль</div>
+                        <div class="metric-value" style="font-size: 28px;">A+</div>
+                        <div class="metric-label" data-ru="Команда" data-uz="Jamoa">Команда</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value" data-value="170">$0K</div>
-                        <div class="metric-label" data-ru="Максимальная прибыль" data-uz="Maksimal foyda">Максимальная прибыль</div>
+                        <div class="metric-value" style="font-size: 28px;">VIP</div>
+                        <div class="metric-label" data-ru="Клиентский опыт" data-uz="Mijoz tajribasi">Клиентский опыт</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Слайд 4: Операционный план -->
-            <div class="slide" id="slide4">
-                <h2 data-ru="Операционная стратегия" data-uz="Operatsion strategiya">Операционная стратегия</h2>
+            <!-- Слайд 6: Финальные рекомендации -->
+            <div class="slide" id="slide6">
+                <h2 data-ru="Заключение и рекомендации" data-uz="Xulosa va tavsiyalar">Заключение и рекомендации</h2>
                 <div class="projects-list">
                     <div class="project-item">
-                        <h3 data-ru="Логистика и поставки" data-uz="Logistika va yetkazib berish">Логистика и поставки</h3>
-                        <p data-ru="• Нишевая парфюмерия: Европа/Москва<br>• Люкс и масс-маркет: Дубай<br>• Объем грузов: 15-16 тонн<br>• Партнер: Abu Saxiy cargo (согласование скидок)"
-                           data-uz="• Nishe parfyumeriya: Yevropa/Moskva<br>• Lyuks va mass-market: Dubai<br>• Yuk hajmi: 15-16 tonna<br>• Hamkor: Abu Saxiy cargo (chegirmalar kelishuvi)">
-                            • Нишевая парфюмерия: Европа/Москва<br>
-                            • Люкс и масс-маркет: Дубай<br>
-                            • Объем грузов: 15-16 тонн<br>
-                            • Партнер: Abu Saxiy cargo (согласование скидок)
+                        <h3 data-ru="Немедленные действия (7 дней)" data-uz="Zudlik bilan (7 kun)">Немедленные действия (7 дней)</h3>
+                        <p data-ru="• Финализация инвестиционных соглашений<br>• Подписание договоров аренды<br>• Контракт с Abu Saxiy cargo"
+                           data-uz="• Investitsiya kelishuvlarini yakunlash<br>• Ijara shartnomalarini imzolash<br>• Abu Saxiy cargo shartnomasi">
+                            • Финализация инвестиционных соглашений<br>
+                            • Подписание договоров аренды<br>
+                            • Контракт с Abu Saxiy cargo
                         </p>
                     </div>
                     <div class="project-item">
-                        <h3 data-ru="Ассортиментная политика" data-uz="Assortiment siyosati">Ассортиментная политика</h3>
-                        <p data-ru="• Парфюмерия: 60-70% ассортимента<br>• Косметика известных брендов: 20-30%<br>• Эксклюзив DR. Vranjes в Ц5<br>• Синергия с цветочным магазином"
-                           data-uz="• Parfyumeriya: assortimentning 60-70%<br>• Taniqli brendlar kosmetikasi: 20-30%<br>• Ts5 da DR. Vranjes eksklyuzivi<br>• Gul do'koni bilan sinergiya">
-                            • Парфюмерия: 60-70% ассортимента<br>
-                            • Косметика известных брендов: 20-30%<br>
-                            • Эксклюзив DR. Vranjes в Ц5<br>
-                            • Синергия с цветочным магазином
+                        <h3 data-ru="Приоритетные задачи (30 дней)" data-uz="Ustuvor vazifalar (30 kun)">Приоритетные задачи (30 дней)</h3>
+                        <p data-ru="• Найм ключевых руководителей<br>• Старт ремонтных работ<br>• Размещение первых заказов"
+                           data-uz="• Asosiy rahbarlarni yollash<br>• Ta'mirlash ishlarini boshlash<br>• Birinchi buyurtmalarni joylashtirish">
+                            • Найм ключевых руководителей<br>
+                            • Старт ремонтных работ<br>
+                            • Размещение первых заказов
                         </p>
-                    </div>
-                    <div class="project-item">
-                        <h3 data-ru="Финансовое управление" data-uz="Moliyaviy boshqaruv">Финансовое управление</h3>
-                        <p data-ru="• Cash-cycle оптовых каналов: 40 дней<br>• Лимиты дебиторской задолженности<br>• Страхование грузов и рисков<br>• Управление валютными рисками"
-                           data-uz="• Ulgurji kanallar cash-cycle: 40 kun<br>• Debitorlik qarzlari limitlari<br>• Yuklar va xatarlarni sug'urtalash<br>• Valyuta xatarlarini boshqarish">
-                            • Cash-cycle оптовых каналов: 40 дней<br>
-                            • Лимиты дебиторской задолженности<br>
-                            • Страхование грузов и рисков<br>
-                            • Управление валютными рисками
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Слайд 5: Маркетинговая стратегия -->
-            <div class="slide" id="slide5">
-                <h2 data-ru="Маркетинг и продвижение" data-uz="Marketing va reklama">Маркетинг и продвижение</h2>
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-value" data-value="100">$0K</div>
-                        <div class="metric-label" data-ru="Бюджет на 6 месяцев" data-uz="6 oylik byudjet">Бюджет на 6 месяцев</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value" data-value="300">0%</div>
-                        <div class="metric-label" data-ru="Целевой ROMI" data-uz="Maqsadli ROMI">Целевой ROMI</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value" data-value="12.5">0%</div>
-                        <div class="metric-label" data-ru="CAC от среднего чека" data-uz="O'rtacha chekdan CAC">CAC от среднего чека</div>
-                    </div>
-                </div>
-                <div class="projects-list" style="margin-top: 40px;">
-                    <div class="project-item">
-                        <h3 data-ru="Каналы продвижения" data-uz="Reklama kanallari">Каналы продвижения</h3>
-                        <p data-ru="• Instagram и Telegram - основные платформы<br>• Meta Ads и Google Ads - таргетированная реклама<br>• Программа лояльности: 5-15% накопительных скидок<br>• Кросс-продажи с цветочным магазином"
-                           data-uz="• Instagram va Telegram - asosiy platformalar<br>• Meta Ads va Google Ads - targetlangan reklama<br>• Sodiqlik dasturi: 5-15% jamg'arma chegirmalari<br>• Gul do'koni bilan kross-savdo">
-                            • Instagram и Telegram - основные платформы<br>
-                            • Meta Ads и Google Ads - таргетированная реклама<br>
-                            • Программа лояльности: 5-15% накопительных скидок<br>
-                            • Кросс-продажи с цветочным магазином
-                        </p>
-                    </div>
-                    <div class="project-item">
-                        <h3 data-ru="KPI маркетинга" data-uz="Marketing KPI">KPI маркетинга</h3>
-                        <p data-ru="• LTV рост: +20% ежеквартально<br>• Конверсия в повторные покупки: ≥40%<br>• Ежемесячная отчетность и оптимизация<br>• A/B тестирование креативов и аудиторий"
-                           data-uz="• LTV o'sishi: har chorakda +20%<br>• Takroriy xaridga konversiya: ≥40%<br>• Oylik hisobot va optimallashtirish<br>• Kreativ va auditoriyalarni A/B test">
-                            • LTV рост: +20% ежеквартально<br>
-                            • Конверсия в повторные покупки: ≥40%<br>
-                            • Ежемесячная отчетность и оптимизация<br>
-                            • A/B тестирование креативов и аудиторий
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Слайд 6: График реализации -->
-            <div class="slide" id="slide6">
-                <h2 data-ru="График реализации проекта" data-uz="Loyihani amalga oshirish jadvali">График реализации проекта</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-marker">1-2</div>
-                        <div class="timeline-content">
-                            <h4 data-ru="Подготовительный этап (1-2 месяца)" data-uz="Tayyorgarlik bosqichi (1-2 oy)">Подготовительный этап (1-2 месяца)</h4>
-                            <p data-ru="Заключение договоров аренды, начало ремонта Ц5 и Бутик Гламур, формирование команды, заказ первых партий товара"
-                               data-uz="Ijara shartnomalarini tuzish, Ts5 va Butik Glamur ta'mirlashni boshlash, jamoa shakllantirish, birinchi tovar partiyalarini buyurtma qilish">
-                                Заключение договоров аренды, начало ремонта Ц5 и Бутик Гламур, формирование команды, заказ первых партий товара
-                            </p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker">2-3</div>
-                        <div class="timeline-content">
-                            <h4 data-ru="Первая волна запуска (2-3 месяца)" data-uz="Birinchi to'lqin (2-3 oy)">Первая волна запуска (2-3 месяца)</h4>
-                            <p data-ru="Открытие обновленного Ц5, старт оптовых продаж Duty Free, запуск маркетинговой кампании"
-                               data-uz="Yangilangan Ts5 ochilishi, Duty Free ulgurji savdoni boshlash, marketing kampaniyasini ishga tushirish">
-                                Открытие обновленного Ц5, старт оптовых продаж Duty Free, запуск маркетинговой кампании
-                            </p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker">3-4</div>
-                        <div class="timeline-content">
-                            <h4 data-ru="Расширение (3-4 месяца)" data-uz="Kengaytirish (3-4 oy)">Расширение (3-4 месяца)</h4>
-                            <p data-ru="Открытие магазина в Бутик Гламур, начало продаж на рынке O'rikzor, запуск цветочного магазина"
-                               data-uz="Butik Glamurda do'kon ochish, O'rikzor bozorida savdoni boshlash, gul do'konini ochish">
-                                Открытие магазина в Бутик Гламур, начало продаж на рынке O'rikzor, запуск цветочного магазина
-                            </p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker">5-6</div>
-                        <div class="timeline-content">
-                            <h4 data-ru="Полный запуск (5-6 месяцев)" data-uz="To'liq ishga tushirish (5-6 oy)">Полный запуск (5-6 месяцев)</h4>
-                            <p data-ru="Открытие магазина на ул. Тараса Шевченко, оптимизация всех процессов, анализ результатов и корректировка стратегии"
-                               data-uz="Taras Shevchenko ko'chasida do'kon ochish, barcha jarayonlarni optimallashtirish, natijalarni tahlil qilish va strategiyani tuzatish">
-                                Открытие магазина на ул. Тараса Шевченко, оптимизация всех процессов, анализ результатов и корректировка стратегии
-                            </p>
-                        </div>
                     </div>
                 </div>
                 <div class="divider"></div>
-                <div style="text-align: center; margin-top: 40px;">
-                    <h3 class="highlight" style="font-size: 32px;" data-ru="Прогноз годовой прибыли: $1,093,600" 
-                        data-uz="Yillik foyda prognozi: $1,093,600">
-                        Прогноз годовой прибыли: $1,093,600
+                <div style="text-align: center;">
+                    <h3 class="highlight" style="font-size: 32px; margin-bottom: 20px;" 
+                        data-ru="Потенциал стать лидером премиум-сегмента" 
+                        data-uz="Premium segment yetakchisi bo'lish potensiali">
+                        Потенциал стать лидером премиум-сегмента
                     </h3>
-                    <p style="margin-top: 20px; font-size: 18px; color: rgba(255,255,255,0.7);" 
-                       data-ru="ROI первого года: 68% | Точка безубыточности: 4-й месяц"
-                       data-uz="Birinchi yil ROI: 68% | Zarar-ziyonsizlik nuqtasi: 4-oy">
-                        ROI первого года: 68% | Точка безубыточности: 4-й месяц
-                    </p>
+                    <div class="roi-indicator" style="font-size: 18px;">
+                        <span data-ru="с перспективой региональной экспансии" 
+                              data-uz="mintaqaviy kengayish istiqboli bilan">
+                            с перспективой региональной экспансии
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
