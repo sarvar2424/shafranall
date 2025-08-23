@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shafran Selective - Презентация v2.0</title>
+    
+    <!-- Подключение элегантных шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@200;300;400;500;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Анимированный фон с частицами */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(212,175,55,0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) translateX(10px) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-10vh) translateX(-10px) scale(1);
+            }
+        }
+
+        /* Контейнер презентации */
+        .presentation-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Декоративные линии */
+        .decorative-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .decorative-lines::before,
+        .decorative-lines::after {
+            content: '';
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .decorative-lines::before {
+            top: 20%;
+            left: -100%;
+            width: 200%;
+            height: 1px;
+        }
+
+        .decorative-lines::after {
+            bottom: 20%;
+            left: -100%;
+            width: 200%;
+            height: 1px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); }
+        }
+
+        /* Хедер с навигацией */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 25px 50px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #ffffff 0%, #d4af37 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            animation: goldShimmer 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        .logo::after {
+            content: 'SELECTIVE';
+            position: absolute;
+            left: 0;
+            top: 100%;
+            font-size: 12px;
+            letter-spacing: 8px;
+            opacity: 0.5;
+        }
+
+        @keyframes goldShimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        /* Переключатель языка с анимацией */
+        .language-switcher {
+            display: flex;
+            background: rgba(255,255,255,0.05);
+            border-radius: 40px;
+            padding: 5px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212,175,55,0.3);
+            box-shadow: 0 8px 32px rgba(212,175,55,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .language-switcher::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212,175,55,0.1), transparent);
+            animation: sweep 3s linear infinite;
+        }
+
+        @keyframes sweep {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .lang-btn {
+            padding: 10px 25px;
+            border: none;
+            background: transparent;
+            color: rgba(255,255,255,0.6);
+            cursor: pointer;
+            border-radius: 35px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 100%);
+            color: #000000;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(212,175,55,0.4);
+            transform: scale(1.05);
+        }
+
+        /* Слайды с улучшенными анимациями */
+        .slides-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .slide {
+            position: absolute;
+            width: 90%;
+            max-width: 1200px;
+            opacity: 0;
+            transform: translateX(100px) scale(0.95);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 100px 80px;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        .slide.active .animate-in {
+            animation: slideInUp 1s ease-out forwards;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Заголовки с декоративными элементами */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #d4af37 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { 
+                filter: brightness(1) drop-shadow(0 0 20px rgba(212,175,55,0.3));
+            }
+            50% { 
+                filter: brightness(1.2) drop-shadow(0 0 40px rgba(212,175,55,0.5));
+            }
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: rgba(255,255,255,0.95);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            animation: underlineFlow 3s ease-in-out infinite;
+        }
+
+        @keyframes underlineFlow {
+            0%, 100% { transform: scaleX(0.5); opacity: 0.5; }
+            50% { transform: scaleX(1); opacity: 1; }
+        }
+
+        /* Метрики с анимацией чисел */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.08) 100%);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .metric-card:hover {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(255,255,255,0.1) 100%);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(212,175,55,0.2),
+                0 0 60px rgba(212,175,55,0.1);
+            border-color: rgba(212,175,55,0.5);
+        }
+
+        .metric-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #d4af37 50%, #f4e4bc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide.active .metric-value {
+            animation: countUp 1.5s ease-out forwards;
+        }
+
+        @keyframes countUp {
+            0% { 
+                transform: scale(0);
+                filter: blur(10px);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% { 
+                transform: scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .metric-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        /* Таблицы с эффектами */
+        .table-container {
+            margin-top: 50px;
+            overflow-x: auto;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.02);
+            padding: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 5px;
+        }
+
+        th {
+            background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(255,255,255,0.05) 100%);
+            padding: 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #d4af37;
+        }
+
+        td {
+            padding: 18px;
+            background: rgba(255,255,255,0.02);
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        tr:hover td {
+            background: rgba(212,175,55,0.05);
+            border-left-color: #d4af37;
+            transform: translateX(5px);
+        }
+
+        .slide.active tbody tr {
+            animation: tableRowSlide 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .slide.active tbody tr:nth-child(1) { animation-delay: 0.1s; }
+        .slide.active tbody tr:nth-child(2) { animation-delay: 0.2s; }
+        .slide.active tbody tr:nth-child(3) { animation-delay: 0.3s; }
+        .slide.active tbody tr:nth-child(4) { animation-delay: 0.4s; }
+        .slide.active tbody tr:nth-child(5) { animation-delay: 0.5s; }
+        .slide.active tbody tr:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes tableRowSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Список проектов с карточками */
+        .projects-list {
+            margin-top: 40px;
+            display: grid;
+            gap: 20px;
+        }
+
+        .project-item {
+            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.05) 100%);
+            border-left: 3px solid rgba(212,175,55,0.5);
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-item:hover::before {
+            left: 100%;
+        }
+
+        .project-item:hover {
+            background: linear-gradient(135deg, rgba(212,175,55,0.05) 0%, rgba(255,255,255,0.08) 100%);
+            border-left-color: #d4af37;
+            transform: translateX(15px);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.15);
+        }
+
+        .project-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #d4af37;
+        }
+
+        .slide.active .project-item {
+            animation: projectSlide 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .slide.active .project-item:nth-child(1) { animation-delay: 0.2s; }
+        .slide.active .project-item:nth-child(2) { animation-delay: 0.4s; }
+        .slide.active .project-item:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes projectSlide {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Навигация с эффектами */
+        .navigation {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(212,175,55,0.1) 100%);
+            border: 2px solid rgba(212,175,55,0.3);
+            color: #d4af37;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+            font-size: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(212,175,55,0.5) 0%, transparent 70%);
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .nav-btn:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(255,255,255,0.2) 100%);
+            transform: scale(1.15);
+            box-shadow: 0 0 30px rgba(212,175,55,0.5);
+            border-color: #d4af37;
+        }
+
+        /* Индикатор слайдов */
+        .slide-indicators {
+            position: fixed;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(212,175,55,0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212,175,55,0.5) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .indicator:hover::before {
+            opacity: 1;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.5); }
+        }
+
+        .indicator.active {
+            height: 40px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 100%);
+            border-color: #d4af37;
+            box-shadow: 0 0 20px rgba(212,175,55,0.5);
+        }
+
+        /* Акцентный текст */
+        .highlight {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            animation: highlightShimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes highlightShimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        /* Разделитель */
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.3) 25%, rgba(212,175,55,0.6) 50%, rgba(212,175,55,0.3) 75%, transparent 100%);
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            animation: dividerShine 3s ease-in-out infinite;
+        }
+
+        @keyframes dividerShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-marker {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+            margin-right: 30px;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(212,175,55,0.5);
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 2px solid rgba(212,175,55,0.3);
+        }
+
+        .timeline-content h4 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        /* Мобильная адаптация */
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            h2 { font-size: 28px; }
+            .metric-value { font-size: 32px; }
+            .slide { padding: 70px 30px; }
+            .header { padding: 20px 25px; }
+            .logo { font-size: 20px; }
+            .navigation { bottom: 30px; }
+            .slide-indicators { right: 20px; }
+            .table-container { font-size: 12px; }
+            th, td { padding: 10px; }
+        }
+
+        /* Эффект загрузки */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-text {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: #d4af37;
+            letter-spacing: 4px;
+            animation: loaderPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes loaderPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Загрузчик -->
+    <div class="loader" id="loader">
+        <div class="loader-text">SHAFRAN</div>
+    </div>
+
+    <!-- Частицы на фоне -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Декоративные линии -->
+    <div class="decorative-lines"></div>
+
+    <div class="presentation-container">
+        <!-- Хедер -->
+        <div class="header">
+            <div class="logo">SHAFRAN</div>
+            <div class="language-switcher">
+                <button class="lang-btn active" onclick="switchLanguage('ru')">РУС</button>
+                <button class="lang-btn" onclick="switchLanguage('uz')">UZB</button>
+            </div>
+        </div>
+
+        <!-- Слайды -->
+        <div class="slides-container">
+            <!-- Слайд 1: Титульный -->
+            <div class="slide active" id="slide1">
+                <div class="animate-in">
+                    <h1 data-ru="План расширения сети и развитие оптового направления" 
+                        data-uz="Tarmoqni kengaytirish va ulgurji savdoni rivojlantirish rejasi">
+                        План расширения сети и развитие оптового направления
+                    </h1>
+                    <div class="subtitle" data-ru="Версия 2.0 | Август 2025" data-uz="Versiya 2.0 | Avgust 2025">
+                        Версия 2.0 | Август 2025
+                    </div>
+                    <div class="divider"></div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value" data-value="1.61">$0M</div>
+                            <div class="metric-label" data-ru="Общие инвестиции" data-uz="Jami investitsiyalar">Общие инвестиции</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" data-value="156">$0K</div>
+                            <div class="metric-label" data-ru="Средняя прибыль/мес" data-uz="O'rtacha oylik foyda">Средняя прибыль/мес</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" data-value="10.3">0</div>
+                            <div class="metric-label" data-ru="Месяцев до окупаемости" data-uz="Qoplash muddati (oy)">Месяцев до окупаемости</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 2: Карта проектов -->
+            <div class="slide" id="slide2">
+                <h2 data-ru="Карта проектов - 6 направлений" data-uz="Loyihalar xaritasi - 6 yo'nalish">Карта проектов - 6 направлений</h2>
+                <div class="projects-list">
+                    <div class="project-item">
+                        <h3 data-ru="Розничные точки (4)" data-uz="Chakana savdo nuqtalari (4)">Розничные точки (4)</h3>
+                        <p data-ru="• Ц5 - обновление с DR. Vranjes - $500К<br>• Ул. Тараса Шевченко - новый магазин - $275К<br>• Бутик Гламур - премиум локация - $325К<br>• Цветочный магазин у Ц5 - $160К"
+                           data-uz="• Ts5 - DR. Vranjes bilan yangilash - $500K<br>• Taras Shevchenko ko'ch. - yangi do'kon - $275K<br>• Butik Glamur - premium joylashuv - $325K<br>• Ts5 yonida gul do'koni - $160K">
+                            • Ц5 - обновление с DR. Vranjes - $500К<br>
+                            • Ул. Тараса Шевченко - новый магазин - $275К<br>
+                            • Бутик Гламур - премиум локация - $325К<br>
+                            • Цветочный магазин у Ц5 - $160К
+                        </p>
+                    </div>
+                    <div class="project-item">
+                        <h3 data-ru="Оптовые каналы (2)" data-uz="Ulgurji kanallar (2)">Оптовые каналы (2)</h3>
+                        <p data-ru="• Duty Free - $150К (маржа 20-25%)<br>• Рынок O'rikzor - $200К (маржа 10-12%)<br>• Быстрая окупаемость: 5-13 месяцев<br>• Цикл оборачиваемости: 40 дней"
+                           data-uz="• Duty Free - $150K (marja 20-25%)<br>• O'rikzor bozori - $200K (marja 10-12%)<br>• Tez qoplanish: 5-13 oy<br>• Aylanish sikli: 40 kun">
+                            • Duty Free - $150К (маржа 20-25%)<br>
+                            • Рынок O'rikzor - $200К (маржа 10-12%)<br>
+                            • Быстрая окупаемость: 5-13 месяцев<br>
+                            • Цикл оборачиваемости: 40 дней
+                        </p>
+                    </div>
+                    <div class="project-item">
+                        <h3 data-ru="Ключевые преимущества" data-uz="Asosiy afzalliklar">Ключевые преимущества</h3>
+                        <p data-ru="• Диверсифицированная структура бизнеса<br>• Синергия между розницей и оптом<br>• Эксклюзивные бренды в ассортименте<br>• Оптимизированная логистика (15-16 тонн)"
+                           data-uz="• Diversifikatsiyalangan biznes tuzilmasi<br>• Chakana va ulgurji o'rtasida sinergiya<br>• Assortimentda eksklyuziv brendlar<br>• Optimallashtirilgan logistika (15-16 tonna)">
+                            • Диверсифицированная структура бизнеса<br>
+                            • Синергия между розницей и оптом<br>
+                            • Эксклюзивные бренды в ассортименте<br>
+                            • Оптимизированная логистика (15-16 тонн)
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 3: Финансовые показатели -->
+            <div class="slide" id="slide3">
+                <h2 data-ru="Инвестиции и прогноз прибыли" data-uz="Investitsiyalar va foyda prognozi">Инвестиции и прогноз прибыли</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-ru="Проект" data-uz="Loyiha">Проект</th>
+                                <th data-ru="Инвестиции" data-uz="Investitsiyalar">Инвестиции</th>
+                                <th data-ru="Оборот/мес" data-uz="Oylik aylanma">Оборот/мес</th>
+                                <th data-ru="Прибыль/мес" data-uz="Oylik foyda">Прибыль/мес</th>
+                                <th data-ru="Окупаемость" data-uz="Qoplash muddati">Окупаемость</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-ru="Ц5 (розница)" data-uz="Ts5 (chakana)">Ц5 (розница)</td>
+                                <td>$500,000</td>
+                                <td>$150,000</td>
+                                <td class="highlight">$30-45K</td>
+                                <td>11-17 мес</td>
+                            </tr>
+                            <tr>
+                                <td data-ru="Тараса Шевченко" data-uz="Taras Shevchenko">Тараса Шевченко</td>
+                                <td>$275,000</td>
+                                <td>$60,000</td>
+                                <td class="highlight">$9-12K</td>
+                                <td>23-31 мес</td>
+                            </tr>
+                            <tr>
+                                <td data-ru="Бутик Гламур" data-uz="Butik Glamur">Бутик Гламур</td>
+                                <td>$325,000</td>
+                                <td>$175,000</td>
+                                <td class="highlight">$43.8K</td>
+                                <td>7.4 мес</td>
+                            </tr>
+                            <tr>
+                                <td data-ru="Цветочный" data-uz="Gul do'koni">Цветочный</td>
+                                <td>$160,000</td>
+                                <td>$50,000</td>
+                                <td class="highlight">$23K</td>
+                                <td>7 мес</td>
+                            </tr>
+                            <tr>
+                                <td data-ru="Duty Free (опт)" data-uz="Duty Free (ulgurji)">Duty Free (опт)</td>
+                                <td>$150,000</td>
+                                <td>$150,000*</td>
+                                <td class="highlight">$22.5-28K</td>
+                                <td>5-7 мес</td>
+                            </tr>
+                            <tr>
+                                <td data-ru="O'rikzor (опт)" data-uz="O'rikzor (ulgurji)">O'rikzor (опт)</td>
+                                <td>$200,000</td>
+                                <td>$200,000*</td>
+                                <td class="highlight">$15-18K</td>
+                                <td>11-13 мес</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="divider"></div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value" data-value="785">$0K</div>
+                        <div class="metric-label" data-ru="Общий оборот/мес" data-uz="Umumiy oylik aylanma">Общий оборот/мес</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" data-value="143">$0K</div>
+                        <div class="metric-label" data-ru="Минимальная прибыль" data-uz="Minimal foyda">Минимальная прибыль</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" data-value="170">$0K</div>
+                        <div class="metric-label" data-ru="Максимальная прибыль" data-uz="Maksimal foyda">Максимальная прибыль</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 4: Операционный план -->
+            <div class="slide" id="slide4">
+                <h2 data-ru="Операционная стратегия" data-uz="Operatsion strategiya">Операционная стратегия</h2>
+                <div class="projects-list">
+                    <div class="project-item">
+                        <h3 data-ru="Логистика и поставки" data-uz="Logistika va yetkazib berish">Логистика и поставки</h3>
+                        <p data-ru="• Нишевая парфюмерия: Европа/Москва<br>• Люкс и масс-маркет: Дубай<br>• Объем грузов: 15-16 тонн<br>• Партнер: Abu Saxiy cargo (согласование скидок)"
+                           data-uz="• Nishe parfyumeriya: Yevropa/Moskva<br>• Lyuks va mass-market: Dubai<br>• Yuk hajmi: 15-16 tonna<br>• Hamkor: Abu Saxiy cargo (chegirmalar kelishuvi)">
+                            • Нишевая парфюмерия: Европа/Москва<br>
+                            • Люкс и масс-маркет: Дубай<br>
+                            • Объем грузов: 15-16 тонн<br>
+                            • Партнер: Abu Saxiy cargo (согласование скидок)
+                        </p>
+                    </div>
+                    <div class="project-item">
+                        <h3 data-ru="Ассортиментная политика" data-uz="Assortiment siyosati">Ассортиментная политика</h3>
+                        <p data-ru="• Парфюмерия: 60-70% ассортимента<br>• Косметика известных брендов: 20-30%<br>• Эксклюзив DR. Vranjes в Ц5<br>• Синергия с цветочным магазином"
+                           data-uz="• Parfyumeriya: assortimentning 60-70%<br>• Taniqli brendlar kosmetikasi: 20-30%<br>• Ts5 da DR. Vranjes eksklyuzivi<br>• Gul do'koni bilan sinergiya">
+                            • Парфюмерия: 60-70% ассортимента<br>
+                            • Косметика известных брендов: 20-30%<br>
+                            • Эксклюзив DR. Vranjes в Ц5<br>
+                            • Синергия с цветочным магазином
+                        </p>
+                    </div>
+                    <div class="project-item">
+                        <h3 data-ru="Финансовое управление" data-uz="Moliyaviy boshqaruv">Финансовое управление</h3>
+                        <p data-ru="• Cash-cycle оптовых каналов: 40 дней<br>• Лимиты дебиторской задолженности<br>• Страхование грузов и рисков<br>• Управление валютными рисками"
+                           data-uz="• Ulgurji kanallar cash-cycle: 40 kun<br>• Debitorlik qarzlari limitlari<br>• Yuklar va xatarlarni sug'urtalash<br>• Valyuta xatarlarini boshqarish">
+                            • Cash-cycle оптовых каналов: 40 дней<br>
+                            • Лимиты дебиторской задолженности<br>
+                            • Страхование грузов и рисков<br>
+                            • Управление валютными рисками
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 5: Маркетинговая стратегия -->
+            <div class="slide" id="slide5">
+                <h2 data-ru="Маркетинг и продвижение" data-uz="Marketing va reklama">Маркетинг и продвижение</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value" data-value="100">$0K</div>
+                        <div class="metric-label" data-ru="Бюджет на 6 месяцев" data-uz="6 oylik byudjet">Бюджет на 6 месяцев</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" data-value="300">0%</div>
+                        <div class="metric-label" data-ru="Целевой ROMI" data-uz="Maqsadli ROMI">Целевой ROMI</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" data-value="12.5">0%</div>
+                        <div class="metric-label" data-ru="CAC от среднего чека" data-uz="O'rtacha chekdan CAC">CAC от среднего чека</div>
+                    </div>
+                </div>
+                <div class="projects-list" style="margin-top: 40px;">
+                    <div class="project-item">
+                        <h3 data-ru="Каналы продвижения" data-uz="Reklama kanallari">Каналы продвижения</h3>
+                        <p data-ru="• Instagram и Telegram - основные платформы<br>• Meta Ads и Google Ads - таргетированная реклама<br>• Программа лояльности: 5-15% накопительных скидок<br>• Кросс-продажи с цветочным магазином"
+                           data-uz="• Instagram va Telegram - asosiy platformalar<br>• Meta Ads va Google Ads - targetlangan reklama<br>• Sodiqlik dasturi: 5-15% jamg'arma chegirmalari<br>• Gul do'koni bilan kross-savdo">
+                            • Instagram и Telegram - основные платформы<br>
+                            • Meta Ads и Google Ads - таргетированная реклама<br>
+                            • Программа лояльности: 5-15% накопительных скидок<br>
+                            • Кросс-продажи с цветочным магазином
+                        </p>
+                    </div>
+                    <div class="project-item">
+                        <h3 data-ru="KPI маркетинга" data-uz="Marketing KPI">KPI маркетинга</h3>
+                        <p data-ru="• LTV рост: +20% ежеквартально<br>• Конверсия в повторные покупки: ≥40%<br>• Ежемесячная отчетность и оптимизация<br>• A/B тестирование креативов и аудиторий"
+                           data-uz="• LTV o'sishi: har chorakda +20%<br>• Takroriy xaridga konversiya: ≥40%<br>• Oylik hisobot va optimallashtirish<br>• Kreativ va auditoriyalarni A/B test">
+                            • LTV рост: +20% ежеквартально<br>
+                            • Конверсия в повторные покупки: ≥40%<br>
+                            • Ежемесячная отчетность и оптимизация<br>
+                            • A/B тестирование креативов и аудиторий
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 6: График реализации -->
+            <div class="slide" id="slide6">
+                <h2 data-ru="График реализации проекта" data-uz="Loyihani amalga oshirish jadvali">График реализации проекта</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1-2</div>
+                        <div class="timeline-content">
+                            <h4 data-ru="Подготовительный этап (1-2 месяца)" data-uz="Tayyorgarlik bosqichi (1-2 oy)">Подготовительный этап (1-2 месяца)</h4>
+                            <p data-ru="Заключение договоров аренды, начало ремонта Ц5 и Бутик Гламур, формирование команды, заказ первых партий товара"
+                               data-uz="Ijara shartnomalarini tuzish, Ts5 va Butik Glamur ta'mirlashni boshlash, jamoa shakllantirish, birinchi tovar partiyalarini buyurtma qilish">
+                                Заключение договоров аренды, начало ремонта Ц5 и Бутик Гламур, формирование команды, заказ первых партий товара
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2-3</div>
+                        <div class="timeline-content">
+                            <h4 data-ru="Первая волна запуска (2-3 месяца)" data-uz="Birinchi to'lqin (2-3 oy)">Первая волна запуска (2-3 месяца)</h4>
+                            <p data-ru="Открытие обновленного Ц5, старт оптовых продаж Duty Free, запуск маркетинговой кампании"
+                               data-uz="Yangilangan Ts5 ochilishi, Duty Free ulgurji savdoni boshlash, marketing kampaniyasini ishga tushirish">
+                                Открытие обновленного Ц5, старт оптовых продаж Duty Free, запуск маркетинговой кампании
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">3-4</div>
+                        <div class="timeline-content">
+                            <h4 data-ru="Расширение (3-4 месяца)" data-uz="Kengaytirish (3-4 oy)">Расширение (3-4 месяца)</h4>
+                            <p data-ru="Открытие магазина в Бутик Гламур, начало продаж на рынке O'rikzor, запуск цветочного магазина"
+                               data-uz="Butik Glamurda do'kon ochish, O'rikzor bozorida savdoni boshlash, gul do'konini ochish">
+                                Открытие магазина в Бутик Гламур, начало продаж на рынке O'rikzor, запуск цветочного магазина
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">5-6</div>
+                        <div class="timeline-content">
+                            <h4 data-ru="Полный запуск (5-6 месяцев)" data-uz="To'liq ishga tushirish (5-6 oy)">Полный запуск (5-6 месяцев)</h4>
+                            <p data-ru="Открытие магазина на ул. Тараса Шевченко, оптимизация всех процессов, анализ результатов и корректировка стратегии"
+                               data-uz="Taras Shevchenko ko'chasida do'kon ochish, barcha jarayonlarni optimallashtirish, natijalarni tahlil qilish va strategiyani tuzatish">
+                                Открытие магазина на ул. Тараса Шевченко, оптимизация всех процессов, анализ результатов и корректировка стратегии
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <h3 class="highlight" style="font-size: 32px;" data-ru="Прогноз годовой прибыли: $1,093,600" 
+                        data-uz="Yillik foyda prognozi: $1,093,600">
+                        Прогноз годовой прибыли: $1,093,600
+                    </h3>
+                    <p style="margin-top: 20px; font-size: 18px; color: rgba(255,255,255,0.7);" 
+                       data-ru="ROI первого года: 68% | Точка безубыточности: 4-й месяц"
+                       data-uz="Birinchi yil ROI: 68% | Zarar-ziyonsizlik nuqtasi: 4-oy">
+                        ROI первого года: 68% | Точка безубыточности: 4-й месяц
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Навигация -->
+        <div class="navigation">
+            <button class="nav-btn" onclick="previousSlide()">‹</button>
+            <button class="nav-btn" onclick="nextSlide()">›</button>
+        </div>
+
+        <!-- Индикаторы слайдов -->
+        <div class="slide-indicators">
+            <div class="indicator active" onclick="goToSlide(1)"></div>
+            <div class="indicator" onclick="goToSlide(2)"></div>
+            <div class="indicator" onclick="goToSlide(3)"></div>
+            <div class="indicator" onclick="goToSlide(4)"></div>
+            <div class="indicator" onclick="goToSlide(5)"></div>
+            <div class="indicator" onclick="goToSlide(6)"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        let currentLang = 'ru';
+        const totalSlides = 6;
+
+        // Инициализация при загрузке
+        window.addEventListener('load', () => {
+            // Создаем частицы
+            createParticles();
+            
+            // Скрываем загрузчик
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                // Запускаем анимацию чисел на первом слайде
+                animateNumbers();
+            }, 1500);
+        });
+
+        // Создание частиц
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Анимация чисел
+        function animateNumbers() {
+            const activeSlide = document.querySelector('.slide.active');
+            if (!activeSlide) return;
+            
+            const values = activeSlide.querySelectorAll('.metric-value[data-value]');
+            values.forEach(element => {
+                const target = parseFloat(element.getAttribute('data-value'));
+                const suffix = element.textContent.match(/[A-Z%]+$/)?.[0] || '';
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    if (suffix === '%') {
+                        element.textContent = Math.floor(current) + suffix;
+                    } else if (suffix === 'K') {
+                        element.textContent = '$' + Math.floor(current) + suffix;
+                    } else if (suffix === 'M' || element.textContent.includes('M')) {
+                        element.textContent = '$' + current.toFixed(2) + 'M';
+                    } else {
+                        element.textContent = current.toFixed(1);
+                    }
+                }, 30);
+            });
+        }
+
+        // Переключение языка
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Обновляем кнопки языка
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Обновляем тексты
+            updateTexts();
+        }
+
+        // Обновление текстов на выбранном языке
+        function updateTexts() {
+            document.querySelectorAll('[data-ru]').forEach(element => {
+                if (currentLang === 'ru') {
+                    element.innerHTML = element.getAttribute('data-ru');
+                } else {
+                    element.innerHTML = element.getAttribute('data-uz');
+                }
+            });
+        }
+
+        // Навигация по слайдам
+        function goToSlide(slideNumber) {
+            // Скрываем текущий слайд
+            document.getElementById(`slide${currentSlide}`).classList.remove('active');
+            document.querySelectorAll('.indicator')[currentSlide - 1].classList.remove('active');
+            
+            // Показываем новый слайд
+            currentSlide = slideNumber;
+            const newSlide = document.getElementById(`slide${currentSlide}`);
+            newSlide.classList.add('active');
+            document.querySelectorAll('.indicator')[currentSlide - 1].classList.add('active');
+            
+            // Перезапускаем анимацию чисел
+            setTimeout(() => {
+                animateNumbers();
+            }, 100);
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                goToSlide(currentSlide + 1);
+            } else {
+                goToSlide(1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 1) {
+                goToSlide(currentSlide - 1);
+            } else {
+                goToSlide(totalSlides);
+            }
+        }
+
+        // Управление с клавиатуры
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+            if (e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            }
+        });
+
+        // Управление колесиком мыши
+        let scrollTimeout;
+        document.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (e.deltaY > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            }, 100);
+        });
+
+        // Управление свайпами на мобильных устройствах
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) nextSlide();
+            if (touchEndX > touchStartX + 50) previousSlide();
+        }
+    </script>
+</body>
+</html>
